@@ -32,9 +32,8 @@ source myenv/Scripts/activate
 ```
 pip install -r requirements.txt
 ```
-- In one block for windows and https
+- In one block for windows
 ```
-git clone https://github.com/carboled/scan-post-process.git
 cd scan-post-process
 python -m venv myenv
 source myenv/Scripts/activate
