@@ -42,7 +42,15 @@ pip install -r requirements.txt
 
 
 # Usage
-
+Once the script is run by:
 ```
 python src.py /path/to/xyz/scan
 ```
+Then a `plots/` folder must be created if the file is found.
+In the `plots/` folder you may find 3 `.png` files:
+- `profiles.png`
+    Profile plots
+- `terrain_dataarray.png`
+    Surface plot using an xarray object
+- `terrain_coordinates.png` 
+    Surface plot using the coordinates

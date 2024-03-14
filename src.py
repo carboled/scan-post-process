@@ -30,7 +30,8 @@ def read_xyz(path_to_scan, cellsize=0.01):
         DataArray with x and y as coordinates
     """
     path_to_scan = Path(r"" + path_to_scan)
-    print(path_to_scan.is_file())
+    assert path_to_scan.is_file(), "File not found."
+    print(f"Reading {path_to_scan.resolve()}.\nThe cell size is {cellsize} m.")
     a = pd.read_csv(path_to_scan,sep=' ', names=['X', 'Y', 'Z', 'R', 'B', 'G'])#, usecols=[0,1,2])
     b = a.where(a['X']>-0.4).where(a['X']<0.4).where(a['Y']>0).where(a['Y']<1).dropna()
     X = np.linspace(-0.4, 0.4,int(0.8/cellsize))
@@ -127,8 +128,11 @@ if __name__ == "__main__":
     cellsize = 0.01
     path_to_scan = sys.argv[1]
     D, Xg, Yg, Zg = read_xyz(path_to_scan, cellsize=0.01)
+    print(f"Plotting surface with coordinated")
     plot_surface_coordinates( Xg, Yg, Zg)
+    print(f"Plotting surface with DataArray")
     plot_surface_dataarray(D)
+    print(f"Plotting profiles")
     plot_profiles(D)
     stop = time.time()
-    print(stop-start)
+    print(f"time elapsed {stop-start} seconds")
